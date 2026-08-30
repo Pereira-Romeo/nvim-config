@@ -106,6 +106,14 @@ vim.cmd([[
 local ts = require("nvim-treesitter")
 ts.install("make", "c", "cpp", "rust", "lua", "doxygen")
 
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "make", "c", "cpp", "rust", "lua" },
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
+
 require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = {"clangd", "rust_analyzer", "lua_ls"},
@@ -162,4 +170,10 @@ vim.keymap.set("n", "<leader>fb", Snacks.picker.buffers) -- opened files (same a
 vim.keymap.set("n", "<leader>fd", Snacks.picker.diagnostics) -- file grep error, hints etc
 vim.keymap.set("n", "<leader>fs", Snacks.picker.lsp_symbols) -- i forgor
 vim.keymap.set("n", "<leader>fS", Snacks.picker.lsp_workspace_symbols) -- i forgor but workspace wise
+
+
+
+------------------- make K inspect pretty with my doxygen ----------
+require("doxygen_hover").setup()
+
 
