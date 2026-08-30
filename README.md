@@ -18,14 +18,7 @@ shortcuts
 
 highlighting trailing spaces with an error
 
-
-# currently missing stuff i need to add
-
-docstring reader/interpreter (my doxygen stuff not getting picked up by tree sitter :broken_heart:)
-leap
-
-figure out if there's a way to make my compile_flags.txt global to all my projects wihtout putting them in the projects
-
+render my c/c++ doxygen nicer
 
 # shortcut list
 
