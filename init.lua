@@ -93,6 +93,15 @@ require("snacks").setup({
 })
 
 
+------------------- highlight trailing spaces ----------------------
+
+vim.cmd([[
+  highlight link TrailingWhitespace Error
+  syntax match TrailingWhitespace /\[ \t]\+$/
+]])
+
+
+
 ------------------- lsp config -------------------------------------
 local ts = require("nvim-treesitter")
 ts.install("make", "c", "cpp", "rust", "lua", "doxygen")
