@@ -1,6 +1,5 @@
 ------------------- package list -----------------------------------
 vim.pack.add {
-    --{ src = "https://github.com/catppuccin/nvim", name = "catppuccin" }, -- theme
     { src = "https://github.com/Ferouk/bearded-nvim", name = "bearded" }, -- other theme
     { src = "https://github.com/nvim-lualine/lualine.nvim" }, -- neovim mode line
     { src = "https://github.com/folke/snacks.nvim" }, -- useful stuff like grep, explorer, diagnostic, etc...
@@ -13,6 +12,7 @@ vim.pack.add {
     { src = "https://github.com/saghen/blink.cmp" }, -- auto completion
     { src = "https://github.com/windwp/nvim-autopairs" }, -- auto place mirror brackets and quotes
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" }, -- tree sitter, dunno what to tell ya
+    { src = "https://github.com/meanderingprogrammer/render-markdown.nvim" }, -- markdown rendering
 }
 
 
@@ -34,26 +34,6 @@ vim.diagnostic.config({
     },
 })
 
---[[ catpuccin theme
-require("catppuccin").setup({
-    flavour = "auto", -- latte, frappe, macchiato, mocha
-    background = { -- :h background
-        light = "latte",
-        dark = "mocha",
-    },
-    transparent_background = true, -- disables setting the background color.
-    float = {
-        transparent = true, -- enable transparent floating windows
-        solid = false, -- use solid styling for floating windows, see |winborder|
-    },
-    dim_inactive = {
-        enabled = false, -- dims the background color of inactive window
-        shade = "dark",
-        percentage = 0.15, -- percentage of the shade to apply to the inactive window
-    },
-})
-vim.cmd.colorscheme "catppuccin-nvim"
-]]
 
 -- Bearded theme
 require("bearded").setup({
@@ -69,6 +49,7 @@ require("bearded").setup({
   end,
 })
 vim.cmd.colorscheme("bearded")
+-- need to change doxygen coloring back, do that later
 vim.api.nvim_set_hl(0, "@keyword.doxygen", { fg = "#ff0000" })
 vim.api.nvim_set_hl(0, "@tag.doxygen", { fg = "#00ff00" })
 vim.api.nvim_set_hl(0, "@variable.parameter.doxygen", { fg = "#00ffff" })
@@ -93,6 +74,11 @@ require("snacks").setup({
 })
 
 
+------------------- markdown stuff ---------------------------------
+-- customize later
+require("render-markdown").setup({})
+
+
 ------------------- highlight trailing spaces ----------------------
 
 vim.cmd([[
@@ -104,11 +90,11 @@ vim.cmd([[
 
 ------------------- lsp config -------------------------------------
 local ts = require("nvim-treesitter")
-ts.install("make", "c", "cpp", "rust", "lua", "doxygen")
+ts.install("make", "c", "cpp", "rust", "lua", "doxygen", "typescript", "markdown")
 
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "make", "c", "cpp", "rust", "lua" },
+  pattern = { "make", "c", "cpp", "rust", "lua", "typescrit", "markdown" },
   callback = function()
     vim.treesitter.start()
   end,
@@ -116,9 +102,9 @@ vim.api.nvim_create_autocmd("FileType", {
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = {"clangd", "rust_analyzer", "lua_ls"},
+    ensure_installed = {"clangd", "rust_analyzer", "lua_ls", "ts_ls", "marksman"},
 })
-vim.lsp.enable({ "clangd", "rust_analyzer", "lua_ls" })
+vim.lsp.enable({ "clangd", "rust_analyzer", "lua_ls", "marksman" })
 
 
 require("tiny-inline-diagnostic").setup({
