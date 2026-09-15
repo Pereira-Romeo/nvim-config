@@ -71,7 +71,7 @@ require("snacks").setup({
         sources = {
             explorer = {
                 hidden = true,
-                ignored = false,
+                ignored = true,
             },
         },
     },
