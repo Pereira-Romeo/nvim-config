@@ -1,7 +1,6 @@
 # My nvim config
 
 This [config](./init.lua) contains the following:
-- **[catppuccin theme](https://github.com/catppuccin/nvim)** (transparent background :P)
 - **[bearded theme](https://github.com/Ferouk/bearded-nvim)** (more used to it and also better colors for c++ (and also has transparent bg))
 - **[lualine](https://github.com/nvim-lualine/lualine.nvim)** (replacing the default nvim bottom status bar)
 - **[mini icons](https://github.com/nvim-mini/mini.icons)** (fancy icons)
@@ -19,6 +18,21 @@ shortcuts
 highlighting trailing spaces with an error
 
 render my c/c++ doxygen nicer
+
+
+
+# lsp & syntax highlighting (with treesitter)
+- C/C++
+- make (no lsp \</3)
+- rust
+- lua
+- doxygen (no lsp)
+- typescript
+- markdown (no lsp)
+- dockerfile
+- yaml
+- bash
+
 
 # shortcut list
 

@@ -95,11 +95,11 @@ vim.cmd([[
 ------------------- treesitter config ------------------------------
 
 local ts = require("nvim-treesitter")
-ts.install("make", "c", "cpp", "rust", "lua", "doxygen", "typescript", "markdown", "dockerfile", "yaml")
+ts.install("make", "c", "cpp", "rust", "lua", "doxygen", "typescript", "markdown", "dockerfile", "yaml", "bash")
 
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "make", "c", "cpp", "rust", "lua", "typescript", "markdown", "dockerfile", "yaml" },
+  pattern = {"make", "c", "cpp", "rust", "lua", "typescript", "markdown", "dockerfile", "yaml", "bash"},
   callback = function()
     vim.treesitter.start()
   end,
@@ -110,10 +110,9 @@ vim.api.nvim_create_autocmd("FileType", {
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = {"clangd", "rust_analyzer", "lua_ls", "ts_ls", "marksman", "dockerls", "docker_compose_language_service"},
+    ensure_installed = {"clangd", "rust_analyzer", "lua_ls", "ts_ls", "marksman", "dockerls", "docker_compose_language_service", "bashls"},
 })
-vim.lsp.enable({"clangd", "rust_analyzer", "lua_ls", "ts_ls", "marksman", "dockerls", "docker_compose_language_service"})
-
+vim.lsp.enable({"clangd", "rust_analyzer", "lua_ls", "ts_ls", "marksman", "dockerls", "docker_compose_language_service", "bashls"})
 
 require("tiny-inline-diagnostic").setup({
     options = {
@@ -125,6 +124,8 @@ require("tiny-inline-diagnostic").setup({
     preset = "ghost"
 })
 
+
+------------------- auto completion --------------------------------
 
 local cmp = require("blink.cmp")
 cmp.build():pwait()
