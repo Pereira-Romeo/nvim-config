@@ -1,16 +1,21 @@
 ------------------- package list -----------------------------------
 vim.pack.add {
-    { src = "https://github.com/Ferouk/bearded-nvim", name = "bearded" }, -- other theme
+    -- UI customizing
+    { src = "https://github.com/Ferouk/bearded-nvim", name = "bearded" }, -- theme
     { src = "https://github.com/nvim-lualine/lualine.nvim" }, -- neovim mode line
+    -- misc
     { src = "https://github.com/folke/snacks.nvim" }, -- useful stuff like grep, explorer, diagnostic, etc...
     { src = "https://github.com/nvim-mini/mini.icons" }, -- custom icons
+    -- lsp
     { src = "https://github.com/neovim/nvim-lspconfig" }, -- default lsp configs
     { src = "https://github.com/mason-org/mason.nvim" }, -- pakcage manager for lsp servers and misc
     { src = "https://github.com/mason-org/mason-lspconfig.nvim" }, -- mason default lsp config
     { src = "https://github.com/rachartier/tiny-inline-diagnostic.nvim" }, -- lsp info on same line as error
+    -- auto complete
     { src = "https://github.com/saghen/blink.lib" }, -- auto completion
     { src = "https://github.com/saghen/blink.cmp" }, -- auto completion
     { src = "https://github.com/windwp/nvim-autopairs" }, -- auto place mirror brackets and quotes
+    -- syntax highlighting etc
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" }, -- tree sitter, dunno what to tell ya
     { src = "https://github.com/meanderingprogrammer/render-markdown.nvim" }, -- markdown rendering
 }
@@ -87,24 +92,27 @@ vim.cmd([[
 ]])
 
 
+------------------- treesitter config ------------------------------
 
-------------------- lsp config -------------------------------------
 local ts = require("nvim-treesitter")
-ts.install("make", "c", "cpp", "rust", "lua", "doxygen", "typescript", "markdown")
+ts.install("make", "c", "cpp", "rust", "lua", "doxygen", "typescript", "markdown", "dockerfile", "yaml")
 
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "make", "c", "cpp", "rust", "lua", "typescrit", "markdown" },
+  pattern = { "make", "c", "cpp", "rust", "lua", "typescript", "markdown", "dockerfile", "yaml" },
   callback = function()
     vim.treesitter.start()
   end,
 })
 
+
+------------------- lsp config -------------------------------------
+
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = {"clangd", "rust_analyzer", "lua_ls", "ts_ls", "marksman"},
+    ensure_installed = {"clangd", "rust_analyzer", "lua_ls", "ts_ls", "marksman", "dockerls", "docker_compose_language_service"},
 })
-vim.lsp.enable({ "clangd", "rust_analyzer", "lua_ls", "marksman" })
+vim.lsp.enable({"clangd", "rust_analyzer", "lua_ls", "ts_ls", "marksman", "dockerls", "docker_compose_language_service"})
 
 
 require("tiny-inline-diagnostic").setup({
