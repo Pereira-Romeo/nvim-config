@@ -33,6 +33,10 @@ render my c/c++ doxygen nicer
 - yaml
 - bash
 
+> [!WARNING]
+> You might need to `:TSInstall <language>` every language you want
+> even the ones already in the config, i think messed something up
+> they don't auto install :(
 
 # shortcut list
 
@@ -45,4 +49,10 @@ note that all my shortcuts are led by a space ` `.
 - ` fd` opens snacks file diagnostics (errors, hints etc...)
 - ` fs` opens snacks file symbols
 - ` fS` opens snacks workspace symbols
+
+# dependencies
+
+- `tree-sitter-cli` install with `cargo binstall tree-sitter-cli` (for tree-sitter package)
+- `ripgrep` install with `sudo snap install ripgrep --classic` (for snacks package: grep)
+
 
