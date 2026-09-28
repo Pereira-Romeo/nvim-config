@@ -66,6 +66,7 @@ vim.api.nvim_set_hl(0, "@lsp.typemod.variable.defaultLibrary", { fg = "#EC7886" 
 vim.api.nvim_set_hl(0, "@keyword.modifier.cpp", { fg = "#B592F5" })
 vim.api.nvim_set_hl(0, "@keyword.type", { fg = "#B592F5" })
 vim.api.nvim_set_hl(0, "@keyword.exception.cpp", { fg = "#F1DB74" })
+vim.api.nvim_set_hl(0, "@string.make", { fg = "#F35C4C" })
 
 
 require("lualine").setup() --status bar at the bottom
