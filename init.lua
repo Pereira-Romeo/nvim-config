@@ -183,4 +183,7 @@ vim.keymap.set("n", "<leader>fS", Snacks.picker.lsp_workspace_symbols) -- i forg
 ------------------- make K inspect pretty with my doxygen ----------
 require("doxygen_hover").setup()
 
+------------------- epitech header ---------------------------------
+
+require("epitech_header").setup()
 
