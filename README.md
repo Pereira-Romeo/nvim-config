@@ -7,7 +7,7 @@ This [config](./init.lua) contains the following plugins:
 - **[nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)**, **[mason-lspconfig](https://github.com/mason-org/mason-lspconfig.nvim)** (lsp configs)
 - **[mason](https://github.com/mason-org/mason.nvim)** (managing installed lsp and other stuff i don't use)
 - **[tiny inline diagnostic](https://github.com/rachartier/tiny-inline-diagnostic.nvim)** (short diagnostic at the end of the line of the error)
-- **[Snacks](https://github.com/folke/snacks.nvim)** (file grep, open, explorer, diagnostic...)
+- **[Snacks](https://github.com/folke/snacks.nvim)** (file grep, open, explorer, diagnostic, just check the repo there's too much to mention...)
 - **[Blink](https://github.com/saghen/blink.cmp)** (and the **[lib](https://github.com/saghen/blink.lib)**) (auto completion)
 - **[tree sitter](https://github.com/nvim-treesitter/nvim-treesitter)** (syntax highlighting)
 
