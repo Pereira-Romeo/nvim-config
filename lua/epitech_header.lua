@@ -169,15 +169,15 @@ function M.run()
 
   local buf_name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":t:r")
 
-  prompt({ title = "Enter project type" }, function(l1)
+  prompt({ title = "Enter project type (default: EPITECH)" }, function(l1)
     local project = trim(l1[1] or "")
     if project == "" then project = "EPITECH" end
 
-    prompt({ title = "Enter file name" }, function(l2)
+    prompt({ title = "Enter project name (default: current working directory)" }, function(l2)
       local name = trim(l2[1] or "")
       if name == "" then name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t") end
 
-      prompt({ title = "Enter file description", multiline = true }, function(l3)
+      prompt({ title = "Enter file description (default: filename)", multiline = true }, function(l3)
         while #l3 > 0 and trim(l3[#l3]) == "" do table.remove(l3) end
         if #l3 == 0 then
           l3 = { buf_name ~= "" and buf_name or name }

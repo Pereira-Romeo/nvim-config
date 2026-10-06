@@ -20,7 +20,6 @@ highlighting trailing spaces with an error
 render my c/c++ doxygen nicer
 
 
-
 # lsp & syntax highlighting (with treesitter)
 - C/C++
 - make (no lsp \</3)
@@ -33,10 +32,6 @@ render my c/c++ doxygen nicer
 - yaml
 - bash
 
-> [!WARNING]
-> You might need to `:TSInstall <language>` every language you want
-> even the ones already in the config, i think messed something up
-> they don't auto install :(
 
 # shortcut list
 
@@ -50,9 +45,13 @@ note that all my shortcuts are led by a space ` `.
 - ` fs` opens snacks file symbols
 - ` fS` opens snacks workspace symbols
 
+
 # dependencies
 
-- `tree-sitter-cli` install with `cargo binstall tree-sitter-cli` (for tree-sitter package)
-- `ripgrep` install with `sudo snap install ripgrep --classic` (for snacks package: grep)
+for the install commands, they're for debian/ubuntu
 
+- `tree-sitter-cli` install with `cargo binstall tree-sitter-cli` (for tree-sitter package), if you don't have cargo, **[check this page](https://rust-lang.org/tools/install/)**
+- `ripgrep` install with `sudo snap install ripgrep --classic` (for snacks package: grep)
+- `gh` install with `sudo snap install gh --classic` (for all snacks github issues, pull request etc), you'll need to run `gh auth login` before being able to use the shortcuts
+- `lazygit` look at their **[repository](https://github.com/jesseduffield/lazygit)** for install (for snacks lazygit window)
 
