@@ -1,6 +1,6 @@
 # My nvim config
 
-This [config](./init.lua) contains the following:
+This [config](./init.lua) contains the following plugins:
 - **[bearded theme](https://github.com/Ferouk/bearded-nvim)** (more used to it and also better colors for c++ (and also has transparent bg))
 - **[lualine](https://github.com/nvim-lualine/lualine.nvim)** (replacing the default nvim bottom status bar)
 - **[mini icons](https://github.com/nvim-mini/mini.icons)** (fancy icons)
@@ -18,6 +18,8 @@ shortcuts
 highlighting trailing spaces with an error
 
 render my c/c++ doxygen nicer
+
+`EpitechHeader` to get a prompt that places and fills your epitech-style header
 
 
 # lsp & syntax highlighting (with treesitter)
