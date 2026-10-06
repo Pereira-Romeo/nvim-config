@@ -4,7 +4,7 @@ require("plugins")
 require("options")
 require("theme")
 
-require("snack_config")
+require("snacks_config")
 
 ------------------- markdown stuff ---------------------------------
 -- customize later
