@@ -17,7 +17,7 @@ vim.keymap.set("n", "<leader>sc", function() Snacks.picker.colorschemes() end) -
 --Misc
 vim.keymap.set({"n", "v"}, "<leader>man", function() Snacks.picker.man() end) -- man pages
 vim.keymap.set("n", "<leader>sh", function() Snacks.picker.help() end) -- commands helper
-
+vim.keymap.set("n", "<C-s>", "<cmd>write<CR>", {desc = "Save file."})
 
 --notifications
 vim.keymap.set({"n", "v"}, "<leader>n",  function() Snacks.notifier.show_history() end) -- check your notification history
