@@ -11,12 +11,12 @@ vim.keymap.set("n", "<leader>fd", Snacks.picker.diagnostics) -- file grep error,
 vim.keymap.set("n", "<leader>fs", Snacks.picker.lsp_symbols) -- grep symbols
 vim.keymap.set("n", "<leader>fS", Snacks.picker.lsp_workspace_symbols) -- grep symbols but workspace wise
 
-vim.keymap.set("n", "<leader>t", function() Snacks.terminal() end) -- terminal window (CTRL + D to close it)
-vim.keymap.set("n", "<leader>sc", function() Snacks.picker.colorschemes() end) -- change your neovim colorscheme on the fly, note that it resets.
+vim.keymap.set("n", "<leader>t", function() Snacks.terminal() end, {desc = "Open a terminal window, <C-d> to kill it"})
+vim.keymap.set("n", "<leader>sc", function() Snacks.picker.colorschemes() end, {desc = "Change your colorscheme, note that it resets on start"})
 
 --Misc
-vim.keymap.set({"n", "v"}, "<leader>man", function() Snacks.picker.man() end) -- man pages
-vim.keymap.set("n", "<leader>sh", function() Snacks.picker.help() end) -- commands helper
+vim.keymap.set({"n", "v"}, "<leader>man", function() Snacks.picker.man() end, {desc = "Open man pages"})
+vim.keymap.set("n", "<leader>sh", function() Snacks.picker.help() end, {desc = "Open commands helper"})
 vim.keymap.set("n", "<C-s>", "<cmd>write<CR>", {desc = "Save file."})
 
 --notifications
