@@ -1,10 +1,10 @@
 ------------------- treesitter config ------------------------------
 local ts = require("nvim-treesitter")
-ts.install({"make", "c", "cpp", "rust", "lua", "doxygen", "typescript", "markdown", "dockerfile", "yaml", "bash"})
+ts.install({"make", "cmake", "c", "cpp", "rust", "lua", "doxygen", "typescript", "markdown", "dockerfile", "yaml", "bash"})
 
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = {"make", "c", "cpp", "rust", "lua", "typescript", "markdown", "dockerfile", "yaml", "bash"},
+  pattern = {"make", "cmake", "c", "cpp", "rust", "lua", "typescript", "markdown", "dockerfile", "yaml", "bash"},
   callback = function()
     vim.treesitter.start()
   end,
