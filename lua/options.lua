@@ -1,11 +1,13 @@
 ------------------- Neovim basic options ---------------------------
 vim.opt.showmode = false -- hide the default mode bar of neovim (which displays insert when in sert mode
 vim.wo.number = true --show line number
+-- indentation spaces
 vim.opt.expandtab = true --prevent neovim from placing \t, replace them by spaces.
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.o.shiftwidth = 4
-vim.o.winborder = "rounded" -- for man popup
+
+vim.o.winborder = "rounded"
 
 
 
