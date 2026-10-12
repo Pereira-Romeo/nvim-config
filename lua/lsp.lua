@@ -1,7 +1,7 @@
 ------------------- lsp config -------------------------------------
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = {"clangd", "rust_analyzer", "lua_ls", "ts_ls", "marksman", "dockerls", "docker_compose_language_service", "bashls"},
+    ensure_installed = {"clangd", "cmake", "rust_analyzer", "lua_ls", "ts_ls", "marksman", "dockerls", "docker_compose_language_service", "bashls"},
 })
 
 vim.lsp.config("lua_ls", { --just removing the vim warning from the nvim config
@@ -17,7 +17,7 @@ vim.lsp.config("lua_ls", { --just removing the vim warning from the nvim config
     },
 })
 
-vim.lsp.enable({"clangd", "rust_analyzer", "lua_ls", "ts_ls", "marksman", "dockerls", "docker_compose_language_service", "bashls"})
+vim.lsp.enable({"clangd", "cmake", "rust_analyzer", "lua_ls", "ts_ls", "marksman", "dockerls", "docker_compose_language_service", "bashls"})
 
 require("tiny-inline-diagnostic").setup({
     options = {
