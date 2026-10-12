@@ -8,6 +8,7 @@ require("snacks").setup({
             },
         },
     },
+    indent = { enabled = true },
     notifier = { enabled = true, timeout = 10000 },
     explorer = { enabled = true },
 })
