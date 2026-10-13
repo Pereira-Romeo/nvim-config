@@ -17,6 +17,15 @@ vim.lsp.config("lua_ls", { --just removing the vim warning from the nvim config
     },
 })
 
+vim.lsp.config("clangd", {
+  cmd = {
+    "clangd",
+    "--background-index",
+    "--clang-tidy",
+    "--query-driver=/usr/bin/g++,/usr/bin/clang++"
+  },
+})
+
 vim.lsp.enable({"clangd", "neocmake", "rust_analyzer", "lua_ls", "ts_ls", "marksman", "dockerls", "docker_compose_language_service", "bashls"})
 
 require("tiny-inline-diagnostic").setup({
