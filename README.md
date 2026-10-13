@@ -52,7 +52,7 @@ note that all my shortcuts are led by a space ` `.
 
 for the install commands, they're for debian/ubuntu
 
-- `tree-sitter-cli` install with `cargo binstall tree-sitter-cli` (for tree-sitter package), if you don't have cargo, **[check this page](https://rust-lang.org/tools/install/)**
+- `tree-sitter-cli` install with `cargo install tree-sitter-cli` (for tree-sitter package), if you don't have cargo, **[check this page](https://rust-lang.org/tools/install/)**
 - `ripgrep` install with `sudo snap install ripgrep --classic` (for snacks package: grep)
 - `gh` install with `sudo snap install gh --classic` (for all snacks github issues, pull request etc), you'll need to run `gh auth login` before being able to use the shortcuts
 - `lazygit` look at their **[repository](https://github.com/jesseduffield/lazygit)** for install (for snacks lazygit window)
