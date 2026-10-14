@@ -12,7 +12,7 @@ require("snacks_config")
 
 
 ------------------- highlight trailing spaces ----------------------
-require("whitespaces")
+require("whitespaces").setup({ strip_on_save = false, listchars = true })
 require("syntax_highlight")
 require("lsp")
 require("completion")
