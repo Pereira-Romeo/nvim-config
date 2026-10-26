@@ -2,9 +2,17 @@
 --"n" means shortcut is active while in normal mode, v for visual etc...
 --
 
+-- moving lines
 vim.keymap.set({ "n", "i", "x" }, "<A-Up>", function() require("move_line").up() end, {desc = "move line/selection up"})
 vim.keymap.set({ "n", "i", "x" }, "<A-Down>", function() require("move_line").down() end,  {desc = "move line/selection down"})
 
+-- quick change indent
+vim.keymap.set("n", "<S-Tab>", "<<", {desc = "remove one indent (does nothing at column 0)"})
+vim.keymap.set("i", "<S-Tab>", "<C-d>", {desc = "same, in insert mode"})
+vim.keymap.set("x", "<S-Tab>", "<gv", {desc = "remove one indent from selected lines, keep selection"})
+vim.keymap.set("x", "<Tab>", ">gv", {desc = "add one indent to selected lines, keep selection"})
+
+-- stuff
 vim.keymap.set("n", "<leader>fo", Snacks.picker.files) -- file open
 vim.keymap.set("n", "<leader>fe", function() Snacks.picker.explorer() end) -- file explorer
 vim.keymap.set("n", "<leader>fb", Snacks.picker.buffers) -- opened files (same as vscode editors)
