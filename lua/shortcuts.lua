@@ -1,5 +1,9 @@
 ------------------- shortcuts --------------------------------------
 --"n" means shortcut is active while in normal mode, v for visual etc...
+--
+
+vim.keymap.set({ "n", "i", "x" }, "<A-Up>", function() require("move_line").up() end, {desc = "move line/selection up"})
+vim.keymap.set({ "n", "i", "x" }, "<A-Down>", function() require("move_line").down() end,  {desc = "move line/selection down"})
 
 vim.keymap.set("n", "<leader>fo", Snacks.picker.files) -- file open
 vim.keymap.set("n", "<leader>fe", function() Snacks.picker.explorer() end) -- file explorer

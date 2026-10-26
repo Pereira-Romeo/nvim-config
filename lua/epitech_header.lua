@@ -1,3 +1,7 @@
+-- This file is coded with AI.
+-- Adds the Epitech style header to a file
+--
+
 local M = {}
 
 local block = { open = "/*", close = "*/", prefix = "** ", empty = "**" }
