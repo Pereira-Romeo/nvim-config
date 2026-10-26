@@ -23,7 +23,7 @@ vim.keymap.set("n", "<leader>fd", Snacks.picker.diagnostics) -- file grep error,
 vim.keymap.set("n", "<leader>fs", Snacks.picker.lsp_symbols) -- grep symbols
 vim.keymap.set("n", "<leader>fS", Snacks.picker.lsp_workspace_symbols) -- grep symbols but workspace wise
 
-vim.keymap.set("n", "<leader>t", function() Snacks.terminal() end, {desc = "Open a terminal window, <C-d> to kill it"})
+vim.keymap.set("n", "<leader>t", function() Snacks.terminal(nil, {win = {position = "float", border = "rounded", width = 0.75, height = 0.75},}) end, {desc = "Open a terminal window, <C-d> to kill it"})
 vim.keymap.set("n", "<leader>sc", function() Snacks.picker.colorschemes() end, {desc = "Change your colorscheme, note that it resets on start"})
 
 --Misc

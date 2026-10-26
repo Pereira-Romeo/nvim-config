@@ -5,7 +5,7 @@ require("bearded").setup({
   bold = true,
   italic = true,
   dim_inactive = false,
-  terminal_colors = true,
+  terminal_colors = false, -- prevent bearded from overwriting my fancygit prompt colors >:(
   --on_highlights = function(set, palette)
     -- optional override
     --set("Normal", { fg = palette.ui.default })
