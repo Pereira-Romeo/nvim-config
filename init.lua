@@ -19,5 +19,5 @@ require("completion")
 
 require("shortcuts")
 
---require("doxygen_hover").setup() -- make K inspect have pretty doxygen render for C/C++
-require("epitech_header").setup()
+--require("doxygen_hover").setup() -- you don't need that.
+require("epitech_header").setup({ header_guard = "pragma" })
