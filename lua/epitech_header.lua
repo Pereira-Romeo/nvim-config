@@ -1,8 +1,14 @@
 -- This file is coded with AI.
 -- Adds the Epitech style header to a file
---
-
+-- And adds header guard to .h and .hpp files (either set it to define, pragma or false if you don't want guards)
 local M = {}
+
+M.config = {
+  -- "define"  -> #ifndef / #define / #endif guard
+  -- "pragma"  -> #pragma once
+  -- false     -> no header guard
+  header_guard = "define",
+}
 
 local block = { open = "/*", close = "*/", prefix = "** ", empty = "**" }
 local line = { prefix = "# ", empty = "#", shebang = true }
@@ -144,6 +150,72 @@ local function find_existing(buf, style, first)
   return first, first + last
 end
 
+---------------------------------------------------------------------------
+-- Header guards (.h / .hpp)
+---------------------------------------------------------------------------
+local function is_c_header(buf)
+  local ext = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":e"):lower()
+  return ext == "h" or ext == "hpp"
+end
+
+local function guard_macro(buf, fallback)
+  local stem = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":t:r")
+  if stem == "" then stem = fallback end
+  stem = stem:gsub("[^%w]", "_"):upper()
+  return stem .. "_H"
+end
+
+local function has_guard(buf)
+  local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+  for i, l in ipairs(lines) do
+    if l:match("^%s*#%s*pragma%s+once") then return true end
+    local macro = l:match("^%s*#%s*ifndef%s+([%w_]+)")
+    if macro then
+      for j = i + 1, #lines do
+        if lines[j] ~= "" then
+          if lines[j]:match("^%s*#%s*define%s+" .. macro .. "%f[^%w_]") then return true end
+          break
+        end
+      end
+    end
+  end
+  return false
+end
+
+-- header_end: 0-indexed exclusive end of the Epitech header in the buffer.
+local function add_guard(buf, header_end, fallback_name)
+  local mode = M.config.header_guard
+  if not mode or not is_c_header(buf) or has_guard(buf) then return end
+
+  local rest = vim.api.nvim_buf_get_lines(buf, header_end, -1, false)
+  while #rest > 0 and trim(rest[1]) == "" do table.remove(rest, 1) end
+  while #rest > 0 and trim(rest[#rest]) == "" do table.remove(rest) end
+
+  local out = { "" }
+  if mode == "pragma" then
+    out[#out + 1] = "#pragma once"
+    if #rest > 0 then
+      out[#out + 1] = ""
+      vim.list_extend(out, rest)
+    end
+  else
+    local macro = guard_macro(buf, fallback_name)
+    out[#out + 1] = "#ifndef " .. macro
+    out[#out + 1] = "    #define " .. macro
+    out[#out + 1] = ""
+    if #rest > 0 then
+      vim.list_extend(out, rest)
+      out[#out + 1] = ""
+    end
+    out[#out + 1] = "#endif /* " .. macro .. " */"
+  end
+
+  vim.api.nvim_buf_set_lines(buf, header_end, -1, false, out)
+end
+
+---------------------------------------------------------------------------
+-- Apply
+---------------------------------------------------------------------------
 local function apply(buf, style, project, name, desc_lines)
   local header = build(style, project, name, desc_lines)
 
@@ -152,11 +224,10 @@ local function apply(buf, style, project, name, desc_lines)
   if style.shebang and l1 and l1:match("^#!") then first = 1 end
 
   local s, e = find_existing(buf, style, first)
-  if s then
-    vim.api.nvim_buf_set_lines(buf, s, e, false, header)
-  else
-    vim.api.nvim_buf_set_lines(buf, first, first, false, header)
-  end
+  local start = s or first
+  vim.api.nvim_buf_set_lines(buf, start, e or start, false, header)
+
+  add_guard(buf, start + #header, name)
 end
 
 ---------------------------------------------------------------------------
@@ -177,7 +248,7 @@ function M.run()
     local project = trim(l1[1] or "")
     if project == "" then project = "EPITECH" end
 
-    prompt({ title = "Enter project name (default: current working directory)" }, function(l2)
+    prompt({ title = "Enter project name (default: current workdir)" }, function(l2)
       local name = trim(l2[1] or "")
       if name == "" then name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t") end
 
@@ -194,7 +265,13 @@ function M.run()
   end)
 end
 
-function M.setup()
+function M.setup(opts)
+  M.config = vim.tbl_extend("force", M.config, opts or {})
+  local g = M.config.header_guard
+  if g ~= false and g ~= "define" and g ~= "pragma" then
+    vim.notify('epitech_header: header_guard must be "define", "pragma" or false', vim.log.levels.WARN)
+    M.config.header_guard = "define"
+  end
   vim.api.nvim_create_user_command("EpitechHeader", M.run, {})
 end
 
