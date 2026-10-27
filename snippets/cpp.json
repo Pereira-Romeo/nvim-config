@@ -1,0 +1,11 @@
+{
+  "namespace": {
+    "prefix": "namespace",
+    "description": "namespace with closing comment",
+    "body": [
+      "namespace ${1:identifier} {",
+      "\t$0",
+      "} /* namespace $1 */"
+    ]
+  }
+}
