@@ -181,21 +181,24 @@ local function has_guard(buf)
   end
   return false
 end
-
 -- header_end: 0-indexed exclusive end of the Epitech header in the buffer.
+-- Returns the 1-indexed line to put the cursor on, or nil if no guard was added.
 local function add_guard(buf, header_end, fallback_name)
   local mode = M.config.header_guard
-  if not mode or not is_c_header(buf) or has_guard(buf) then return end
+  if not mode or not is_c_header(buf) or has_guard(buf) then return nil end
 
   local rest = vim.api.nvim_buf_get_lines(buf, header_end, -1, false)
   while #rest > 0 and trim(rest[1]) == "" do table.remove(rest, 1) end
   while #rest > 0 and trim(rest[#rest]) == "" do table.remove(rest) end
 
   local out = { "" }
+  local cursor_idx -- 0-indexed offset inside `out`
+
   if mode == "pragma" then
     out[#out + 1] = "#pragma once"
+    out[#out + 1] = ""
+    cursor_idx = #out - 1 -- the blank line right after #pragma once
     if #rest > 0 then
-      out[#out + 1] = ""
       vim.list_extend(out, rest)
     end
   else
@@ -203,6 +206,7 @@ local function add_guard(buf, header_end, fallback_name)
     out[#out + 1] = "#ifndef " .. macro
     out[#out + 1] = "    #define " .. macro
     out[#out + 1] = ""
+    cursor_idx = #out - 1 -- the blank line between #define and the rest
     if #rest > 0 then
       vim.list_extend(out, rest)
       out[#out + 1] = ""
@@ -211,6 +215,7 @@ local function add_guard(buf, header_end, fallback_name)
   end
 
   vim.api.nvim_buf_set_lines(buf, header_end, -1, false, out)
+  return header_end + cursor_idx + 1
 end
 
 ---------------------------------------------------------------------------
@@ -227,7 +232,13 @@ local function apply(buf, style, project, name, desc_lines)
   local start = s or first
   vim.api.nvim_buf_set_lines(buf, start, e or start, false, header)
 
-  add_guard(buf, start + #header, name)
+  local row = add_guard(buf, start + #header, name)
+  if row then
+    local win = vim.fn.bufwinid(buf)
+    if win ~= -1 then
+      vim.api.nvim_win_set_cursor(win, { row, 0 })
+    end
+  end
 end
 
 ---------------------------------------------------------------------------

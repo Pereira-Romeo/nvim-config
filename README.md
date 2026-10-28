@@ -57,3 +57,5 @@ for the install commands, they're for debian/ubuntu
 - `gh` install with `sudo snap install gh --classic` (for all snacks github issues, pull request etc), you'll need to run `gh auth login` before being able to use the shortcuts
 - `lazygit` look at their **[repository](https://github.com/jesseduffield/lazygit)** for install (for snacks lazygit window)
 
+you'll also need a nerdfont and a terminal that can do underlines.
+

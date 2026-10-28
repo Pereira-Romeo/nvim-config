@@ -3,14 +3,14 @@
 --
 
 -- moving lines (vscode like)
-vim.keymap.set({ "n", "i", "x" }, "<A-Up>", function() require("move_line").up() end, {desc = "move line/selection up"})
-vim.keymap.set({ "n", "i", "x" }, "<A-Down>", function() require("move_line").down() end,  {desc = "move line/selection down"})
+vim.keymap.set({"n", "i", "x"}, "<A-Up>", function() require("move_line").up() end, {desc = "move line/selection up"})
+vim.keymap.set({"n", "i", "x"}, "<A-Down>", function() require("move_line").down() end,  {desc = "move line/selection down"})
 -- undo and redo (vscode like)
-vim.keymap.set({"n", "i"}, "<C-z>", "<Cmd>undo<CR>", {desc = "undo"})
-vim.keymap.set({"n", "i"}, "<C-S-z>", "<Cmd>redo<CR>", {desc = "redo"})
+vim.keymap.set({"n", "i", "v"}, "<C-z>", "<Cmd>undo<CR>", {desc = "undo"})
+vim.keymap.set({"n", "i", "v"}, "<C-S-z>", "<Cmd>redo<CR>", {desc = "redo"})
 -- move view without moving cursor (vscode like)
-vim.keymap.set({ "n", "x" }, "<C-Up>", "<C-y>", {desc = "scroll view up"})
-vim.keymap.set({ "n", "x" }, "<C-Down>", "<C-e>", {desc = "scroll view down"})
+vim.keymap.set({"n", "x"}, "<C-Up>", "<C-y>", {desc = "scroll view up"})
+vim.keymap.set({"n", "x"}, "<C-Down>", "<C-e>", {desc = "scroll view down"})
 
 -- quick change indent
 vim.keymap.set("n", "<S-Tab>", "<<", {desc = "remove one indent (does nothing at column 0)"})
